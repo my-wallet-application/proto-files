@@ -1,0 +1,28 @@
+syntax = "proto3";
+package auto_login_token_flows;
+import "google/protobuf/empty.proto";
+
+message GenerateAutoLoginTokenRequest{
+    string TraderId = 1;
+    optional string AccountId = 2;
+}
+
+message GenerateAutoLoginTokenResponse{
+    string Token = 1;
+}
+
+message ResolveAutoLoginTokenRequest{
+    string Token = 1;
+}
+
+message ResolveAutoLoginTokenResponse{
+    optional string TraderId = 1;
+}
+
+
+service AutoLoginTokenFlowsGrpc {
+    rpc GenerateAutoLoginToken(GenerateAutoLoginTokenRequest) returns (GenerateAutoLoginTokenResponse);
+    rpc ResolveAutoLoginToken(ResolveAutoLoginTokenRequest) returns (ResolveAutoLoginTokenResponse);
+    rpc Ping(google.protobuf.Empty) returns(google.protobuf.Empty);
+}
+
