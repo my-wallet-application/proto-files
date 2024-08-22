@@ -15,29 +15,24 @@ message GetStatusRequest {
     string ClientId = 1;
 }
 
-message SearchKyc{
-    repeated string TraderIds = 1;
-    optional KycStatus Status = 2;
-}
 
 message KycStatusModel {
     string ClientId = 1;
-    kyc.KycStatus Status = 2;
+    KycStatus Status = 2;
 }
 
 message GetStatusResponse {
-    kyc.KycStatus Status = 1;
+    KycStatus Status = 1;
 }
 
 message UpdateStatusRequest {
     string ClientId = 1;
-    kyc.KycStatus Status = 2;
+    KycStatus Status = 2;
     string Who =3;
 }
 
 service KycStatusService {
-    rpc Get(kyc.GetStatusRequest) returns (kyc.GetStatusResponse);
-    rpc Update(kyc.UpdateStatusRequest) returns (google.protobuf.Empty);
-    rpc SearchKycStatuses(kyc.SearchKyc) returns (stream KycStatusModel);
+    rpc Get(GetStatusRequest) returns (GetStatusResponse);
+    rpc Update(UpdateStatusRequest) returns (google.protobuf.Empty);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
