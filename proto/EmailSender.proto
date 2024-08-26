@@ -17,7 +17,7 @@ message SendRecoveryPasswordRequest{
 }
 
 
-service SendGridBridgeGrpcService {
+service EmailSender {
     rpc SendWelcomeEmail(SendWelcomeEmailRequest) returns (google.protobuf.Empty);
     rpc SendRecoveryPasswordCode(SendRecoveryPasswordRequest) returns (google.protobuf.Empty);    
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
