@@ -3,26 +3,12 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package email_sender;
 
-enum OperationTypes{
-    Login = 0;
-    Withdrawal = 1;
-    Exchange = 2;
-    MerchantSettingsUpdate = 3;
-}
-
 message SendWelcomeEmailRequest {
     string Email = 1;
     string LangId = 2;
     string FullName=3;
-    string ConfirmationLink=4;
 }
 
-message Send2FaEmail {
-    string Email = 1;
-    string LangId = 2;
-    string Code = 3;
-    OperationTypes OperationType = 4;
-}
 
 message SendRecoveryPasswordRequest{
     string Email = 1;
@@ -31,68 +17,8 @@ message SendRecoveryPasswordRequest{
 }
 
 
-message SendMerchantExchangeEmailRequest {
-    string Email = 1;
-    string LangId = 2;
-    double Amount=3;
-    string CurrencyFrom=4;
-    string CurrencyTo=5;
-}
-
-message SendMerchantDepositReceivedEmailRequest {
-    string Email = 1;
-    string LangId = 2;
-    double Amount=3;
-    string Currency=4;
-}
-
-message SendMerchantOrderExecuteRequest{
-    string Email = 1;
-    string LangId = 2;
-    double Amount = 3;
-    string Currency = 4;
-    string OrderId = 5;
-}
-
-message SendMerchantWithdrawalCreateRequest{
-    string Email = 1;
-    string LangId = 2;
-    double Amount = 3;
-    string Currency = 4;
-    string WithdrawalId = 5;
-}
-
-message SendMerchantWithdrawalStatusUpdateRequest{
-    string Email = 1;
-    string LangId = 2;
-    string Status = 3;
-    string WithdrawalId = 4;
-}
-
-message SendMerchantSettingsUpdateRequest{
-    string Email = 1;
-    string LangId = 2;
-}
-
-message SendCreateMerchantNewDepositAddressRequest{
-    string Email = 1;
-    string LangId = 2;
-    string Id = 3;
-    string Currency = 4;
-    string Network = 5;
-    string Tag = 6;
-}
-
 service SendGridBridgeGrpcService {
     rpc SendWelcomeEmail(SendWelcomeEmailRequest) returns (google.protobuf.Empty);
-    rpc SendRecoveryPasswordCode(SendRecoveryPasswordRequest) returns (google.protobuf.Empty);
-    rpc Send2FaCode(Send2FaEmail) returns (google.protobuf.Empty);
-    rpc SendMerchantExchangeEmail(SendMerchantExchangeEmailRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantDepositReceivedEmail(SendMerchantDepositReceivedEmailRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantOrderExecuteEmail(SendMerchantOrderExecuteRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantWithdrawalCreateEmail(SendMerchantWithdrawalCreateRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantWithdrawalStatusUpdate(SendMerchantWithdrawalStatusUpdateRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantNewDepositAddressCreate(SendCreateMerchantNewDepositAddressRequest) returns (google.protobuf.Empty);
-    rpc SendMerchantSettingsUpdate(SendMerchantSettingsUpdateRequest) returns (google.protobuf.Empty);
+    rpc SendRecoveryPasswordCode(SendRecoveryPasswordRequest) returns (google.protobuf.Empty);    
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
