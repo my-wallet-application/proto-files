@@ -1,0 +1,106 @@
+
+syntax = "proto3";
+package wallets;
+import "google/protobuf/empty.proto";
+
+message SwapGrpcRequest {
+    string ProcessId = 1;
+    string ClientId = 2;
+    int64 Timestamp = 3;
+    string FrowWallet = 4;
+    double FromDelta = 5;
+    string ToWallet = 6;
+    double ToDelta = 7;
+
+}
+
+enum OperationResult{
+    Ok = 0;
+    NotEnoughFunds=1;
+}
+
+message SendGrpcRequest {
+    string FromClientId = 1;
+    string ToClientId = 2;
+    double Amount = 3;
+    string ProcessId = 4;
+    string WalletId = 5;
+    int64 Timestamp = 6;
+}
+
+
+message SendToMultipleDestinationsGrpcRequest {
+    string FromClientId = 1;
+    repeated GrpcWalletDestination ToClients = 2;
+    string ProcessId = 3;
+    string WalletId = 4;
+    int64 Timestamp = 5;
+}
+
+message GrpcWalletDestination{
+    string ToClientId = 1;
+    double Amount = 2;
+}
+
+message SendGrpcResponse {
+    OperationResult Result = 1;
+    double FromBalance = 2;
+    double ToBalance = 3;
+    int64 ExecutedTimestamp = 4;
+}
+
+message SendToMultipleGrpcResponse {
+    OperationResult Result = 1;
+    double FromBalance = 2;
+    repeated SentToGrpcModel ToBalances = 3;
+    int64 ExecutedTimestamp = 4;
+}
+
+message SentToGrpcModel{
+    string ToClientId = 1;
+    double Balance = 2;
+}
+
+message SwapGrpcResponse {
+    OperationResult Result = 1;
+    double SellWalletBalance = 2;
+    double BuyWalletBalance = 3;
+    int64 ExecutedTimestamp =4;
+}
+
+message BalanceUpdateGrpcRequest {
+    string ProcessId = 1;
+    int64 Timestamp = 2;
+    repeated BalanceUpdateCommands BalanceUpdates = 3;
+}
+
+message BalanceUpdateCommands {
+    string ClientId = 1;
+    string Wallet = 2;
+    double Delta = 3;
+}
+
+message BalanceUpdateGrpcResponse {
+    OperationResult Result = 1;
+    int64 ExecutedTimestamp = 2;
+    repeated double Balances = 3;
+}
+
+message GetWalletsBalanceRequest {
+    string ClientId = 1;
+}
+
+message WalletBalanceGrpcModel{
+    string Wallet = 1;
+    double Balance = 2;
+}
+
+service WalletsFlowsGrpcService {
+    rpc Swap(SwapGrpcRequest) returns (SwapGrpcResponse);
+    rpc Send(SendGrpcRequest) returns (SendGrpcResponse);
+    rpc SendToMultipleWallets(SendToMultipleDestinationsGrpcRequest) returns (SendToMultipleGrpcResponse);
+    rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
+    rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+ }
+
