@@ -33,7 +33,7 @@ message HistoryGrpcLine {
     double OperationFee = 9;
 }
 
-service WalletHistoryFlowsGrpcService {
+service OperationsHistory {
     rpc GetHistory(GetHistoryGrpcRequest) returns (stream HistoryGrpcLine);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
