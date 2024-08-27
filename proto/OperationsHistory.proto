@@ -1,0 +1,40 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package operations_history;
+
+enum HistoryOperationGrpcType{
+    Buy = 0;
+    Sell = 1;
+    Deposit = 2;
+    Withdraw = 3;
+    WithdrawCanceled = 4;
+}
+
+message GetHistoryGrpcRequest {
+    string ClientId = 1;
+    repeated string AssetIds = 2;
+    int64 FromDate = 3;
+    int64 ToDate = 4;
+    int64 PageNo = 5;
+    int64 MessagesPerPage = 6;
+    repeated HistoryOperationGrpcType OpTypes = 7;
+}
+
+message HistoryGrpcLine {
+    int64 Timestamp = 1;
+    string AssetId = 2;
+    string ProcessId = 3;
+    string OperationId = 4;
+    repeated string RelatedOperationIds = 5;
+    HistoryOperationGrpcType OperationType = 6;
+    double Delta = 7;
+    double BalanceAfterOperation = 8;    
+    double OperationFee = 9;
+}
+
+service WalletHistoryFlowsGrpcService {
+    rpc GetHistory(GetHistoryGrpcRequest) returns (stream HistoryGrpcLine);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
