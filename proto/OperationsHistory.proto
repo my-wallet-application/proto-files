@@ -8,7 +8,6 @@ enum HistoryOperationGrpcType{
     Sell = 1;
     CryptoDeposit = 2;
     CryptoWithdraw = 3;
-    WithdrawCanceled = 4;
 }
 
 message GetHistoryGrpcRequest {
