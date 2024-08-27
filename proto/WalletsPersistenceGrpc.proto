@@ -1,0 +1,26 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package wallets_persistence;
+
+message WalletGrpcModel {
+    string ClientId = 1;
+    string Wallet = 2;
+    double Balance = 3;
+}
+
+message GetWalletsGrpcModel {
+    string ClientId = 1;
+}
+
+message GetWalletGrpcModel{
+    string Wallet = 1;
+    double Balance = 2; 
+}
+
+service WalletsPersistenceGrpcService {
+    rpc Save(stream wallets_persistence.WalletGrpcModel) returns (google.protobuf.Empty);
+    rpc Get(wallets_persistence.GetWalletsGrpcModel) returns (stream wallets_persistence.GetWalletGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+ }
+
