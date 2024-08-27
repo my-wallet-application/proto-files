@@ -6,8 +6,8 @@ package operations_history;
 enum HistoryOperationGrpcType{
     Buy = 0;
     Sell = 1;
-    Deposit = 2;
-    Withdraw = 3;
+    CryptoDeposit = 2;
+    CryptoWithdraw = 3;
     WithdrawCanceled = 4;
 }
 
