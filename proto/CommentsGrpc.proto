@@ -8,16 +8,18 @@ message Comment {
     string Text = 3;
     int64 CreatedAt = 4;
     string OfficerId = 5;
+    string ProcessId = 6;
 }
 
 message GetRequest {
-    string ClientId = 1;
+    optional string ClientId = 1;
 }
 
 message CreateRequest {
     string ClientId = 1;
     string Text = 2;
     string OfficerId = 3;
+    string ProcessId = 4;
 }
 
 message CreateResponse {
