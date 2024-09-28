@@ -1,0 +1,33 @@
+syntax = "proto3";
+package comments;
+import "google/protobuf/empty.proto";
+
+message Comment {
+    string Id = 1;
+    string ClientId = 2;
+    string Text = 3;
+    int64 CreatedAt = 4;
+    string OfficerId = 5;
+    string ProcessId = 6;
+}
+
+message GetRequest {
+    optional string ClientId = 1;
+}
+
+message CreateRequest {
+    string ClientId = 1;
+    string Text = 2;
+    string OfficerId = 3;
+    string ProcessId = 4;
+}
+
+message CreateResponse {
+    Comment Comment = 1;
+}
+
+service CommentsGrpcService {
+    rpc Get(GetRequest) returns (stream Comment);
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
