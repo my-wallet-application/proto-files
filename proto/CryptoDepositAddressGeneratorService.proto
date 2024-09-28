@@ -14,12 +14,12 @@ message GetWalletDepositAddressRequest {
     string AssetId = 2;
 }
 
-message GenerateWalletDepositAddressRequest {
+message GetOrGenerateWalletDepositAddressRequest {
     string ClientId = 1;
     string AssetId = 2;
 }
 
-message GenerateWalletDepositAddressResponse{
+message GetOrGenerateWalletDepositAddressResponse{
     GrpcStatus Status = 1;
     optional AddressModel Address = 2;
 }
@@ -33,6 +33,6 @@ message AddressModel{
 
 service CryptoDepositAddressGenerator {
     rpc GetWalletDepositAddresses(GetWalletDepositAddressRequest) returns (stream AddressModel);
-    rpc GenerateWalletDepositAddress(GenerateWalletDepositAddressRequest) returns (GenerateWalletDepositAddressResponse);
+    rpc GetOrGenerateWalletDepositAddress(GetOrGenerateWalletDepositAddressRequest) returns (GetOrGenerateWalletDepositAddressResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
