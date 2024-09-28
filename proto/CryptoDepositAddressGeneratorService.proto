@@ -17,6 +17,7 @@ message GetWalletDepositAddressRequest {
 message GetOrGenerateWalletDepositAddressRequest {
     string ClientId = 1;
     string AssetId = 2;
+    string NetworkId = 3;
 }
 
 message GetOrGenerateWalletDepositAddressResponse{
