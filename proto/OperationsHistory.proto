@@ -3,13 +3,6 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package operations_history;
 
-enum HistoryOperationGrpcType{
-    Buy = 0;
-    Sell = 1;
-    CryptoDeposit = 2;
-    CryptoWithdraw = 3;
-}
-
 message GetHistoryGrpcRequest {
     string ClientId = 1;
     repeated string AssetIds = 2;
@@ -17,7 +10,6 @@ message GetHistoryGrpcRequest {
     int64 ToDate = 4;
     int64 PageNo = 5;
     int64 MessagesPerPage = 6;
-    repeated HistoryOperationGrpcType OpTypes = 7;
 }
 
 message HistoryGrpcLine {
@@ -26,10 +18,16 @@ message HistoryGrpcLine {
     string ProcessId = 3;
     string OperationId = 4;
     repeated string RelatedOperationIds = 5;
-    HistoryOperationGrpcType OperationType = 6;
     double Delta = 7;
     double BalanceAfterOperation = 8;    
     double OperationFee = 9;
+    optional CryptoDeposit CryptoDeposit = 10;
+}
+
+message CryptoDeposit{
+    string BlockchainTxId = 1;
+    string DepositAddress = 2;
+    string DepositAddressMemo =3;
 }
 
 service OperationsHistory {
