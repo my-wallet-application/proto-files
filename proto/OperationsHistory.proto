@@ -21,10 +21,10 @@ message HistoryGrpcLine {
     double Delta = 7;
     double BalanceAfterOperation = 8;    
     double OperationFee = 9;
-    optional CryptoDeposit CryptoDeposit = 10;
+    optional CryptoDepositHistoryGrpcModel CryptoDeposit = 10;
 }
 
-message CryptoDeposit{
+message CryptoDepositHistoryGrpcModel{
     string BlockchainTxId = 1;
     string DepositAddress = 2;
     string DepositAddressMemo =3;
