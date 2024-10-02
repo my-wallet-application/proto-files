@@ -26,15 +26,6 @@ message SendGrpcRequest {
     int64 Timestamp = 6;
 }
 
-
-message SendToMultipleDestinationsGrpcRequest {
-    string FromClientId = 1;
-    repeated GrpcWalletDestination ToClients = 2;
-    string ProcessId = 3;
-    string WalletId = 4;
-    int64 Timestamp = 5;
-}
-
 message GrpcWalletDestination{
     string ToClientId = 1;
     double Amount = 2;
@@ -44,13 +35,6 @@ message SendGrpcResponse {
     GrpcOperationResult Result = 1;
     double FromBalance = 2;
     double ToBalance = 3;
-    int64 ExecutedTimestamp = 4;
-}
-
-message SendToMultipleGrpcResponse {
-    GrpcOperationResult Result = 1;
-    double FromBalance = 2;
-    repeated SentToGrpcModel ToBalances = 3;
     int64 ExecutedTimestamp = 4;
 }
 
@@ -114,8 +98,6 @@ message GetSwapQuoteGrpcResponse{
 service WalletsFlowsGrpcService {
     rpc GetSwapQuote(GetSwapQuoteRequest) returns (GetSwapQuoteGrpcResponse);
     rpc ExecuteSwap(ExecuteSwapGrpcRequest) returns (SwapGrpcResponse);
-    
-    rpc SendToMultipleWallets(SendToMultipleDestinationsGrpcRequest) returns (SendToMultipleGrpcResponse);
     rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
