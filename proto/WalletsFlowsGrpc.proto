@@ -96,10 +96,11 @@ message WalletBalanceGrpcModel{
 }
 
 message GetSwapQuoteRequest{
-    string FromAssetId = 1;
-    string ToAssetId = 2;
-    double FromAmount = 3; // -1 means max amount
-    double ToAmount = 4; 
+    string ClientId = 1;
+    string FromAssetId = 2;
+    string ToAssetId = 3;
+    double FromAmount = 4; // -1 means max amount
+    double ToAmount = 5; 
 }
 
 
