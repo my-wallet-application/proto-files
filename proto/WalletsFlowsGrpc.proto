@@ -112,7 +112,7 @@ message GetSwapQuoteGrpcResponse{
 
 
 service WalletsFlowsGrpcService {
-    rpc GetSwapQuote(GetSwapQuoteRequest) returns (SendGrpcResponse);
+    rpc GetSwapQuote(GetSwapQuoteRequest) returns (GetSwapQuoteGrpcResponse);
     rpc Swap(SwapGrpcRequest) returns (SwapGrpcResponse);
     
     rpc SendToMultipleWallets(SendToMultipleDestinationsGrpcRequest) returns (SendToMultipleGrpcResponse);
