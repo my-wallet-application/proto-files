@@ -3,14 +3,9 @@ syntax = "proto3";
 package wallets;
 import "google/protobuf/empty.proto";
 
-message SwapGrpcRequest {
+message ExecuteSwapGrpcRequest {
     string ProcessId = 1;
-    string ClientId = 2;
-    int64 Timestamp = 3;
-    string FrowWallet = 4;
-    double FromDelta = 5;
-    string ToWallet = 6;
-    double ToDelta = 7;
+    string SwapQuoteId = 2;
 
 }
 
@@ -118,7 +113,7 @@ message GetSwapQuoteGrpcResponse{
 
 service WalletsFlowsGrpcService {
     rpc GetSwapQuote(GetSwapQuoteRequest) returns (GetSwapQuoteGrpcResponse);
-    rpc Swap(SwapGrpcRequest) returns (SwapGrpcResponse);
+    rpc ExecuteSwap(ExecuteSwapGrpcRequest) returns (SwapGrpcResponse);
     
     rpc SendToMultipleWallets(SendToMultipleDestinationsGrpcRequest) returns (SendToMultipleGrpcResponse);
     rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
