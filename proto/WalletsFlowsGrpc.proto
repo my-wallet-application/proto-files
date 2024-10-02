@@ -14,7 +14,7 @@ message SwapGrpcRequest {
 
 }
 
-enum OperationResult{
+enum GrpcOperationResult{
     Ok = 0;
     NotEnoughFunds=1;
     SwapQuoteExpired=2;
@@ -44,14 +44,14 @@ message GrpcWalletDestination{
 }
 
 message SendGrpcResponse {
-    OperationResult Result = 1;
+    GrpcOperationResult Result = 1;
     double FromBalance = 2;
     double ToBalance = 3;
     int64 ExecutedTimestamp = 4;
 }
 
 message SendToMultipleGrpcResponse {
-    OperationResult Result = 1;
+    GrpcOperationResult Result = 1;
     double FromBalance = 2;
     repeated SentToGrpcModel ToBalances = 3;
     int64 ExecutedTimestamp = 4;
@@ -63,7 +63,7 @@ message SentToGrpcModel{
 }
 
 message SwapGrpcResponse {
-    OperationResult Result = 1;
+    GrpcOperationResult Result = 1;
     double SellWalletBalance = 2;
     double BuyWalletBalance = 3;
     int64 ExecutedTimestamp =4;
@@ -82,7 +82,7 @@ message BalanceUpdateCommands {
 }
 
 message BalanceUpdateGrpcResponse {
-    OperationResult Result = 1;
+    GrpcOperationResult Result = 1;
     int64 ExecutedTimestamp = 2;
     repeated double Balances = 3;
 }
