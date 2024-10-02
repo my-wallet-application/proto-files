@@ -14,7 +14,6 @@ enum GrpcOperationResult{
     NotEnoughFunds=1;
     SwapQuoteExpired=2;
     NoLiquidity=3;
-    NotEnoughAmountOfAsset = 4;
 }
 
 message SendGrpcRequest {
