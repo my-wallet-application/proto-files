@@ -17,6 +17,7 @@ message SwapGrpcRequest {
 enum OperationResult{
     Ok = 0;
     NotEnoughFunds=1;
+    SwapQuoteExpired=2;
 }
 
 message SendGrpcRequest {
