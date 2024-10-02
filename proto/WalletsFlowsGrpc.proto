@@ -112,6 +112,7 @@ message GetSwapQuoteGrpcResponse{
     string Id = 2;
     double FromAmount = 3;
     double ToAmount = 4;
+    int32 ExpirationSeconds = 5;
 }
 
 
