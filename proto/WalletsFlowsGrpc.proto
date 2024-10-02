@@ -95,9 +95,24 @@ message WalletBalanceGrpcModel{
     double Balance = 2;
 }
 
+message GetSwapQuoteRequest{
+    string FromAssetId = 1;
+    string ToAssetId = 2;
+    double FromAmount = 3; // -1 means max amount
+    double ToAmount = 4; 
+}
+
+
+message GetSwapQuoteGrpcResponse{
+    double FromAmount = 1;
+    double ToAmount = 2;
+}
+
+
 service WalletsFlowsGrpcService {
+    rpc GetSwapQuote(GetSwapQuoteRequest) returns (SendGrpcResponse);
     rpc Swap(SwapGrpcRequest) returns (SwapGrpcResponse);
-    rpc Send(SendGrpcRequest) returns (SendGrpcResponse);
+    
     rpc SendToMultipleWallets(SendToMultipleDestinationsGrpcRequest) returns (SendToMultipleGrpcResponse);
     rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
