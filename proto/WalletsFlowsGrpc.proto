@@ -104,8 +104,9 @@ message GetSwapQuoteRequest{
 
 
 message GetSwapQuoteGrpcResponse{
-    double FromAmount = 1;
-    double ToAmount = 2;
+    string Id = 1;
+    double FromAmount = 2;
+    double ToAmount = 3;
 }
 
 
