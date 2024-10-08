@@ -6,16 +6,16 @@ import "google/protobuf/empty.proto";
 message SaveSwapQuoteRequest{
     string ClientId = 1;
     string Id = 2;
-    int64 Timestamp = 3;
+    int64 CreatedAt = 3;
     string SellAssetId = 4;
     string BuyAssetId = 5;
     double SellAmount = 6;
     double BuyAmount = 7;
-    int64 ExpirationTimestamp = 8;
-
-    int64 BidAskTimeStamp = 9;
-    double Bid = 10;
-    double Ask = 11;
+    int64 ExecutedAt = 8;
+    string ExecutedResult = 9;
+    int64 BidAskTimeStamp = 10;
+    double Bid = 11;
+    double Ask = 12;
 }
 
 
