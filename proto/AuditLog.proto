@@ -10,6 +10,7 @@ message AuditLogGrpcItem{
     string Message = 5;
     string TechData = 6;
     bool HasPersonalData = 7;
+    string Label = 8;
 }
 
 
