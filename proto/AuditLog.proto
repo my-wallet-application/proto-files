@@ -1,0 +1,24 @@
+syntax = "proto3";
+package audit_log;
+import "google/protobuf/empty.proto";
+
+message AuditLogGrpcItem{
+    string ClientId = 1;
+    int64 Moment = 2;
+    string Who = 3;
+    string Message = 4;
+    string TechData = 5;
+}
+
+
+message GetAuditLogGrpcRequest{
+    string ClientId = 1;
+    int64 FromDate = 2;
+    int64 ToDate = 3;
+}
+
+service AuditLog {
+    rpc Save(stream AuditLogGrpcItem) returns (google.protobuf.Empty);
+    rpc Get(GetAuditLogGrpcRequest) returns (stream AuditLogGrpcItem);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
