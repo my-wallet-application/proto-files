@@ -16,6 +16,7 @@ message SaveSwapQuoteRequest{
     int64 BidAskTimeStamp = 10;
     double Bid = 11;
     double Ask = 12;
+    string RequestParams = 13;
 }
 
 
