@@ -4,8 +4,9 @@ package wallets;
 import "google/protobuf/empty.proto";
 
 message ExecuteSwapGrpcRequest {
-    string ProcessId = 1;
-    string SwapQuoteId = 2;
+    string ClientId = 1;
+    string ProcessId = 2;
+    string SwapQuoteId = 3;
 
 }
 
