@@ -6,7 +6,7 @@ import "google/protobuf/empty.proto";
 message ExecuteExchangeGrpcRequest {
     string ClientId = 1;
     string ProcessId = 2;
-    string SwapQuoteId = 3;
+    string QuoteId = 3;
 
 }
 
