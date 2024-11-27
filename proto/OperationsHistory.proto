@@ -12,6 +12,35 @@ message GetHistoryGrpcRequest {
     int64 MessagesPerPage = 6;
 }
 
+message ExchangeSellOperation{
+    double Amount = 1;
+    double CommissionAmount = 2;
+    string ToAssetId = 3;
+    double ToAmount = 4;
+}
+
+message ExchangeBuyOperation{
+    double Amount = 1;
+    string FromAssetId = 2;
+    double FromAmount = 3;
+    double FromCommissionAmount = 4;
+}
+
+message ExchangeCommissionReceivedOperation{
+    double Amount = 1;
+    string FromClientId = 2;
+}
+
+
+message HistoryOperationType {
+    oneof response {
+        CryptoDepositHistoryGrpcModel CryptoDeposit = 1;
+        ExchangeSellOperation ExchangeSell = 2;
+        ExchangeBuyOperation ExchangeBuy = 3;
+        ExchangeCommissionReceivedOperation ExchangeCommissionReceived = 4;
+    } 
+}
+
 message HistoryGrpcLine {
     int64 Timestamp = 1;
     string AssetId = 2;
@@ -21,7 +50,7 @@ message HistoryGrpcLine {
     double Delta = 7;
     double BalanceAfterOperation = 8;    
     double OperationFee = 9;
-    optional CryptoDepositHistoryGrpcModel CryptoDeposit = 10;
+    HistoryOperationType OperationData = 10;
 }
 
 message CryptoDepositHistoryGrpcModel{
