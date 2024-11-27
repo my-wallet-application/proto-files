@@ -3,7 +3,7 @@ syntax = "proto3";
 package wallets;
 import "google/protobuf/empty.proto";
 
-message ExecuteSwapGrpcRequest {
+message ExecuteExchangeGrpcRequest {
     string ClientId = 1;
     string ProcessId = 2;
     string SwapQuoteId = 3;
@@ -44,7 +44,7 @@ message SentToGrpcModel{
     double Balance = 2;
 }
 
-message SwapGrpcResponse {
+message ExecuteExchangeGrpcResponse {
     GrpcOperationResult Result = 1;
     double SellWalletBalance = 2;
     double BuyWalletBalance = 3;
@@ -78,7 +78,7 @@ message WalletBalanceGrpcModel{
     double Balance = 2;
 }
 
-message GetSwapQuoteRequest{
+message GetExchangeQuoteRequest{
     string ClientId = 1;
     string FromAssetId = 2;
     string ToAssetId = 3;
@@ -87,7 +87,7 @@ message GetSwapQuoteRequest{
 }
 
 
-message GetSwapQuoteGrpcResponse{
+message GetExchangeQuoteGrpcResponse{
     GrpcOperationResult Result = 1;
     string Id = 2;
     double FromAmount = 3;
@@ -97,8 +97,8 @@ message GetSwapQuoteGrpcResponse{
 
 
 service WalletsFlowsGrpcService {
-    rpc GetSwapQuote(GetSwapQuoteRequest) returns (GetSwapQuoteGrpcResponse);
-    rpc ExecuteSwap(ExecuteSwapGrpcRequest) returns (SwapGrpcResponse);
+    rpc GetExchangeQuote(GetExchangeQuoteRequest) returns (GetExchangeQuoteGrpcResponse);
+    rpc ExecuteExchange(ExecuteExchangeGrpcRequest) returns (ExecuteExchangeGrpcResponse);
     rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
