@@ -33,7 +33,7 @@ message ExchangeCommissionReceivedOperation{
 
 
 message HistoryOperationType {
-    oneof response {
+    oneof opType {
         CryptoDepositHistoryGrpcModel CryptoDeposit = 1;
         ExchangeSellOperation ExchangeSell = 2;
         ExchangeBuyOperation ExchangeBuy = 3;
