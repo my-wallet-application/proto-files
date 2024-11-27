@@ -12,21 +12,21 @@ message GetHistoryGrpcRequest {
     int64 MessagesPerPage = 6;
 }
 
-message ExchangeSellOperation{
+message ExchangeSellGrpcModel{
     double Amount = 1;
     double CommissionAmount = 2;
     string ToAssetId = 3;
     double ToAmount = 4;
 }
 
-message ExchangeBuyOperation{
+message ExchangeBuyGrpcModel{
     double Amount = 1;
     string FromAssetId = 2;
     double FromAmount = 3;
     double FromCommissionAmount = 4;
 }
 
-message ExchangeCommissionReceivedOperation{
+message ExchangeCommissionReceivedGrpcModel{
     double Amount = 1;
     string FromClientId = 2;
 }
@@ -35,9 +35,9 @@ message ExchangeCommissionReceivedOperation{
 message HistoryOperationType {
     oneof opType {
         CryptoDepositHistoryGrpcModel CryptoDeposit = 1;
-        ExchangeSellOperation ExchangeSell = 2;
-        ExchangeBuyOperation ExchangeBuy = 3;
-        ExchangeCommissionReceivedOperation ExchangeCommissionReceived = 4;
+        ExchangeSellGrpcModel ExchangeSell = 2;
+        ExchangeBuyGrpcModel ExchangeBuy = 3;
+        ExchangeCommissionReceivedGrpcModel ExchangeCommissionReceived = 4;
     } 
 }
 
