@@ -13,20 +13,19 @@ message GetHistoryGrpcRequest {
 }
 
 message ExchangeSellGrpcModel{
-    double SellCommissionAmount = 2;
-    string BuyAssetId = 3;
-    double BuyAmount = 4;
+    double SellCommissionAmount = 1;
+    string BuyAssetId = 2;
+    double BuyAmount = 3;
 }
 
 message ExchangeBuyGrpcModel{
-    string SellAssetId = 2;
-    double SellAmount = 3;
-    double SellCommissionAmount = 4;
+    string SellAssetId = 1;
+    double SellAmount = 2;
+    double SellCommissionAmount = 3;
 }
 
 message ExchangeCommissionReceivedGrpcModel{
-    double Amount = 1;
-    string FromClientId = 2;
+    string FromClientId = 1;
 }
 
 
