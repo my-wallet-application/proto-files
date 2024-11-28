@@ -78,8 +78,8 @@ message WalletBalanceGrpcModel{
     double Balance = 2;
 }
 
-message ExchangeAmount{
-    oneof AmountType{
+message ExchangeAmountGrpcModel{
+    oneof AmountTypeGrpcModel{
         double Sell = 1;
         double Buy = 2;
         google.protobuf.Empty MaxSell = 3;
@@ -90,7 +90,7 @@ message GetExchangeQuoteRequest{
     string ClientId = 1;
     string FromAssetId = 2;
     string ToAssetId = 3;
-    ExchangeAmount Amount = 4;
+    ExchangeAmountGrpcModel Amount = 4;
 }
 
 
