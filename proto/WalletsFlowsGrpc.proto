@@ -7,7 +7,6 @@ message ExecuteExchangeGrpcRequest {
     string ClientId = 1;
     string ProcessId = 2;
     string QuoteId = 3;
-
 }
 
 enum GrpcOperationResult{
@@ -51,11 +50,7 @@ message ExecuteExchangeGrpcResponse {
     int64 ExecutedTimestamp =4;
 }
 
-message BalanceUpdateGrpcRequest {
-    string ProcessId = 1;
-    int64 Timestamp = 2;
-    repeated BalanceUpdateCommands BalanceUpdates = 3;
-}
+
 
 message BalanceUpdateCommands {
     string ClientId = 1;
@@ -63,11 +58,7 @@ message BalanceUpdateCommands {
     double Delta = 3;
 }
 
-message BalanceUpdateGrpcResponse {
-    GrpcOperationResult Result = 1;
-    int64 ExecutedTimestamp = 2;
-    repeated double Balances = 3;
-}
+
 
 message GetWalletsBalanceRequest {
     string ClientId = 1;
@@ -106,7 +97,6 @@ message GetExchangeQuoteGrpcResponse{
 service WalletsFlowsGrpcService {
     rpc GetExchangeQuote(GetExchangeQuoteRequest) returns (GetExchangeQuoteGrpcResponse);
     rpc ExecuteExchange(ExecuteExchangeGrpcRequest) returns (ExecuteExchangeGrpcResponse);
-    rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
