@@ -7,6 +7,7 @@ message SendWelcomeEmailRequest {
     string Email = 1;
     string LangId = 2;
     string FullName=3;
+    string ClientId = 4;
 }
 
 
@@ -14,6 +15,7 @@ message SendRecoveryPasswordRequest{
     string Email = 1;
     string LangId = 2;
     string RecoveryCode=3;
+    string ClientId = 4;
 }
 
 
