@@ -4,11 +4,11 @@ import "google/protobuf/empty.proto";
 
 
 message GenerateCodeRequest{
-    string TraderId = 2;    
+    string TraderId = 2;
+    string ProcessId = 1;    
 }
 
 message GenerateCodeResponse{
-    string ProcessId = 1;
     string Code = 2;
 }
 
