@@ -15,6 +15,7 @@ message GenerateCodeResponse{
 message VerifyCodeRequest{
     string TraderId = 1;
     string ProcessId = 2;
+    string Code = 3;
 }
 
 message VerifyCodeResponse{
