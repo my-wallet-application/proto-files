@@ -14,9 +14,17 @@ message SendRecoveryPasswordRequest{
     string RecoveryCode = 3;
 }
 
+message SendAuthorizationCodeRequest{
+    string ClientId = 1;
+    string LangId = 2;
+    string Claim = 3;
+    string Code = 4;
+}
+
 
 service EmailSender {
     rpc SendWelcomeEmail(SendWelcomeEmailRequest) returns (google.protobuf.Empty);
-    rpc SendRecoveryPasswordCode(SendRecoveryPasswordRequest) returns (google.protobuf.Empty);    
+    rpc SendRecoveryPasswordCode(SendRecoveryPasswordRequest) returns (google.protobuf.Empty);  
+    rpc SendAuthorizationCode(SendAuthorizationCodeRequest) returns (google.protobuf.Empty);  
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
