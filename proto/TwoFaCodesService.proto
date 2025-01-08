@@ -1,0 +1,28 @@
+syntax = "proto3";
+package two_fa_codes;
+import "google/protobuf/empty.proto";
+
+
+message GenerateCodeRequest{
+    string TraderId = 2;    
+}
+
+message GenerateCodeResponse{
+    string ProcessId = 1;
+    string Code = 2;
+}
+
+message VerifyCodeRequest{
+    string TraderId = 1;
+    string ProcessId = 2;
+}
+
+message VerifyCodeResponse{
+    bool ValidatedOk = 1;
+}
+
+service TwoFaCodesService {
+    rpc GenerateCode(GenerateCodeRequest) returns (GenerateCodeResponse);
+    rpc VerifyCode(VerifyCodeRequest) returns (VerifyCodeResponse);   
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
