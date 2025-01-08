@@ -4,16 +4,14 @@ import "google/protobuf/empty.proto";
 package email_sender;
 
 message SendWelcomeEmailRequest {
-    string Email = 1;
+    string ClientId = 1;
     string LangId = 2;
-    string FullName=3;
 }
 
-
 message SendRecoveryPasswordRequest{
-    string Email = 1;
+    string ClientId = 1;
     string LangId = 2;
-    string RecoveryCode=3;
+    string RecoveryCode = 3;
 }
 
 
