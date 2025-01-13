@@ -34,7 +34,7 @@ message GetActiveForClientGrpcModel{
 }
 
 service WithdrawFlowsGrpcService {
-    rpc Register(stream RegisterWithdrawGrpcRequest) returns (google.protobuf.Empty);
+    rpc Register(RegisterWithdrawGrpcRequest) returns (google.protobuf.Empty);
     rpc GetAllActive(google.protobuf.Empty) returns (stream WithdrawFlowGrpcModel);
     rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream WithdrawFlowGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
