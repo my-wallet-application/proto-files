@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package withdraw_flows;
+
+message RegisterWithdrawGrpcRequest {
+    string ClientId = 1;
+    string Wallet = 2;
+    double Amount = 3;
+    string DestinationAddress = 4;
+    string DestinationTag = 5;
+}
+
+enum WithdrawStatus{
+    Pending = 0;
+    Completed = 1;
+    Failed = 2;
+}
+
+
+message WithdrawFlowGrpcModel{
+    string ClientId = 1;
+    string Wallet = 2;
+    double Amount = 3;
+    string DestinationAddress = 4;
+    string DestinationTag = 5;
+    int64 Timestamp = 6;
+    string ProcessId = 7;
+    WithdrawStatus Status = 8;
+}
+
+message GetActiveForClientGrpcModel{
+    string ClientId = 1;
+}
+
+service WithdrawFlowsGrpcService {
+    rpc Register(stream RegisterWithdrawGrpcRequest) returns (google.protobuf.Empty);
+    rpc GetAllActive(google.protobuf.Empty) returns (stream WithdrawFlowGrpcModel);
+    rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream WithdrawFlowGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+ }
+
