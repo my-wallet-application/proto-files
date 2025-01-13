@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package withdraw_flows;
+package crypto_withdraw_flows;
 
 message RegisterWithdrawGrpcRequest {
     string ClientId = 1;
@@ -18,7 +18,7 @@ enum WithdrawStatus{
 }
 
 
-message WithdrawFlowGrpcModel{
+message CryptoWithdrawFlowGrpcModel{
     string ClientId = 1;
     string Wallet = 2;
     double Amount = 3;
@@ -33,10 +33,10 @@ message GetActiveForClientGrpcModel{
     string ClientId = 1;
 }
 
-service WithdrawFlowsGrpcService {
+service CryptoWithdrawFlowsGrpcService {
     rpc Register(RegisterWithdrawGrpcRequest) returns (google.protobuf.Empty);
-    rpc GetAllActive(google.protobuf.Empty) returns (stream WithdrawFlowGrpcModel);
-    rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream WithdrawFlowGrpcModel);
+    rpc GetAllActive(google.protobuf.Empty) returns (stream CryptoWithdrawFlowGrpcModel);
+    rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream CryptoWithdrawFlowGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
 
