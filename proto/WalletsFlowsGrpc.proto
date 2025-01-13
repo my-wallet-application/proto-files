@@ -93,11 +93,30 @@ message GetExchangeQuoteGrpcResponse{
     int32 ExpirationSeconds = 5;
 }
 
+message ReserveForWithdrawGrpcRequest{
+    string ClientId = 1;
+    string WalletId = 2;
+    double Amount = 3;
+    string ProcessId =4;
+}
+
+
+enum ReserveForWithdrawResult{
+    WithdrawnOk = 0;
+    WithdrawFailNotEnoughFunds=1;    
+}
+
+message ReserveForWithdrawGrpcResponse{
+    ReserveForWithdrawResult Result = 1;
+    double Balance = 2;
+}
+
 
 service WalletsFlowsGrpcService {
     rpc GetExchangeQuote(GetExchangeQuoteRequest) returns (GetExchangeQuoteGrpcResponse);
     rpc ExecuteExchange(ExecuteExchangeGrpcRequest) returns (ExecuteExchangeGrpcResponse);
-    rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);
+    rpc GetWalletsBalance(GetWalletsBalanceRequest) returns (stream WalletBalanceGrpcModel);  
+    rpc ReserveForWithdraw(ReserveForWithdrawGrpcRequest) returns (ReserveForWithdrawGrpcResponse);  
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
 
