@@ -1,14 +1,23 @@
 
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package crypto_withdraw_flows;
+package withdraw_flows;
 
-message RegisterWithdrawGrpcRequest {
+message RegisterCryptoWithdrawGrpcRequest {
     string ClientId = 1;
     string Wallet = 2;
     double Amount = 3;
     string DestinationAddress = 4;
     string DestinationTag = 5;
+}
+
+enum RegisterCryptoWithdrawStatus{
+    Ok = 0;
+    NotEnoughFunds = 1;
+}
+
+message RegisterCryptoWithdrawGrpcResponse{
+    RegisterCryptoWithdrawStatus Status = 1;
 }
 
 enum WithdrawStatus{
@@ -34,7 +43,7 @@ message GetActiveForClientGrpcModel{
 }
 
 service CryptoWithdrawFlowsGrpcService {
-    rpc Register(RegisterWithdrawGrpcRequest) returns (google.protobuf.Empty);
+    rpc RegisterCrypto(RegisterCryptoWithdrawGrpcRequest) returns (RegisterCryptoWithdrawGrpcResponse);
     rpc GetAllActive(google.protobuf.Empty) returns (stream CryptoWithdrawFlowGrpcModel);
     rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream CryptoWithdrawFlowGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
