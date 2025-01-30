@@ -9,6 +9,7 @@ message RegisterCryptoWithdrawGrpcRequest {
     double Amount = 3;
     string DestinationAddress = 4;
     string DestinationTag = 5;
+    string ProcessId = 6;
 }
 
 enum RegisterCryptoWithdrawStatus{
