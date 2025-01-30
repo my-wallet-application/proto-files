@@ -42,7 +42,7 @@ message GetActiveForClientGrpcModel{
     string ClientId = 1;
 }
 
-service CryptoWithdrawFlowsGrpcService {
+service WithdrawFlowsGrpcService {
     rpc RegisterCrypto(RegisterCryptoWithdrawGrpcRequest) returns (RegisterCryptoWithdrawGrpcResponse);
     rpc GetAllActive(google.protobuf.Empty) returns (stream CryptoWithdrawFlowGrpcModel);
     rpc GetActiveForClient(GetActiveForClientGrpcModel) returns (stream CryptoWithdrawFlowGrpcModel);
