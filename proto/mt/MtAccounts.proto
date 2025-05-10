@@ -1,0 +1,19 @@
+syntax = "proto3";
+package mt_accounts;
+import "google/protobuf/empty.proto";
+
+message GetAccountsGrpcRequest{
+    string TraderId = 1;
+}
+
+message MtAccountGrpcModel{
+    string TraderId = 1;
+    string AccountId = 2;
+    string GroupId = 3;
+    string Balance = 4;
+}
+
+service TraderCredentialsFlows {
+    rpc GetAccounts(GetAccountsGrpcRequest) returns (stream MtAccountGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
