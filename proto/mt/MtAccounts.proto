@@ -13,7 +13,7 @@ message MtAccountGrpcModel{
     string Balance = 4;
 }
 
-service TraderCredentialsFlows {
+service MtAccounts {
     rpc GetAccounts(GetAccountsGrpcRequest) returns (stream MtAccountGrpcModel);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
