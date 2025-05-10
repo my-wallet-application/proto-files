@@ -10,7 +10,7 @@ message MtAccountGrpcModel{
     string TraderId = 1;
     string AccountId = 2;
     string GroupId = 3;
-    string Balance = 4;
+    double Balance = 4;
 }
 
 service MtAccounts {
