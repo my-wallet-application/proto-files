@@ -4,6 +4,8 @@ import "google/protobuf/empty.proto";
 
 enum AccountOperationResult{
     Success = 0;
+    NotEnoughBalance = 1;
+    AccountNotFound = 2;
 }
 
 message GetAccountsGrpcRequest{
@@ -20,7 +22,8 @@ message MtAccountGrpcModel{
 message BalanceUpdateGrpcRequest{
     string ProcessId = 1;
     string TraderId = 2;
-    repeated BalanceUpdateCommand Commands = 3;    
+    bool CreateIfNotExists = 3;
+    repeated BalanceUpdateCommand Commands = 4;    
 }
 
 message BalanceUpdateCommand{
