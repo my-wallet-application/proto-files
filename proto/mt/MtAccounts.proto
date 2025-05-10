@@ -2,6 +2,10 @@ syntax = "proto3";
 package mt_accounts;
 import "google/protobuf/empty.proto";
 
+enum AccountOperationResult{
+    Success = 0;
+}
+
 message GetAccountsGrpcRequest{
     string TraderId = 1;
 }
@@ -13,7 +17,33 @@ message MtAccountGrpcModel{
     double Balance = 4;
 }
 
+message BalanceUpdateGrpcRequest{
+    string ProcessId = 1;
+    string TraderId = 2;
+    repeated BalanceUpdateCommand Commands = 3;    
+}
+
+message BalanceUpdateCommand{
+    string AccountId = 1;
+    double Delta = 2;
+    string OperationComment = 3;
+    BalanceUpdateReason Reason = 4;
+}
+
+enum BalanceUpdateReason{
+    Deposit = 0;
+    Withdrawal = 1;
+    BalanceCorrection = 2;
+}
+
+message BalanceUpdateGrpcResponse{
+    repeated AccountOperationResult Results = 1;
+}
+
+
+
 service MtAccounts {
     rpc GetAccounts(GetAccountsGrpcRequest) returns (stream MtAccountGrpcModel);
+    rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
