@@ -5,7 +5,8 @@ import "google/protobuf/empty.proto";
 enum AccountOperationResult{
     Success = 0;
     NotEnoughBalance = 1;
-    AccountNotFound = 2;
+    TraderNotFound = 2;
+    AccountNotFound = 3;
 }
 
 message GetAccountsGrpcRequest{
