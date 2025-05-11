@@ -104,7 +104,7 @@ service MtEngine {
     rpc GetAccounts(GetAccountsGrpcRequest) returns (stream MtAccountGrpcModel);
     rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
     rpc OpenPosition(OpenPositionGrpcRequest) returns (OpenPositionGrpcResponse);
-    rpc ClosePosition(ClosePositionGrpcRequest) returns (OpenPositionGrpcResponse);
+    rpc ClosePosition(ClosePositionGrpcRequest) returns (ClosePositionGrpcResponse);
     rpc CancelPendingOrder(CancelPendingOrderGrpcRequest) returns (CancelPendingOrderGrpcResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
