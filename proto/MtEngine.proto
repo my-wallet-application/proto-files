@@ -1,0 +1,110 @@
+syntax = "proto3";
+package mt_engine;
+import "google/protobuf/empty.proto";
+
+enum MtEngineOperationResult{
+    Success = 0;
+    NotEnoughBalance = 1;
+    AccountNotFound = 2;
+    OrderOrPositionNotFound = 3;
+}
+
+message GetAccountsGrpcRequest{
+    string TraderId = 1;
+    bool CreateDefaultAccounts = 2;
+}
+
+message MtAccountGrpcModel{
+    string TraderId = 1;
+    string AccountId = 2;
+    string GroupId = 3;
+    double Balance = 4;
+}
+
+message BalanceUpdateGrpcRequest{
+    string ProcessId = 1;
+    string TraderId = 2;
+    repeated BalanceUpdateCommand Commands = 3;    
+}
+
+message BalanceUpdateCommand{
+    string AccountId = 1;
+    double Delta = 2;
+    string OperationComment = 3;
+    BalanceUpdateReason Reason = 4;
+}
+
+enum BalanceUpdateReason{
+    Deposit = 0;
+    Withdrawal = 1;
+    BalanceCorrection = 2;
+}
+
+message BalanceUpdateGrpcResponse{
+    repeated MtEngineOperationResult Results = 1;
+}
+
+
+message OpenPositionGrpcRequest{
+    string ProcessId = 1;
+    string TraderId = 2;
+    string AccountId = 3;
+    string InstrumentId = 4;
+    int32 Leverage = 5;
+    int64 Volume = 6;
+    optional double DesiredPrice = 7;
+    optional double TakeProfitPrice = 8;
+    optional double StopLossPrice = 9;
+}
+
+message OpenPositionGrpcResponse{
+    MtEngineOperationResult Result = 1;
+     optional OrderOrPositionGrpcModel Position = 2;
+}
+
+message ClosePositionGrpcRequest{
+    string ProcessId = 1;
+    string TraderId = 2;
+    string AccountId = 3;
+    string PositionId = 4;
+}
+
+
+message ClosePositionGrpcResponse{
+    MtEngineOperationResult Result = 1;
+    optional OrderOrPositionGrpcModel Position = 2;
+}
+
+message CancelPendingOrderGrpcRequest{
+    string ProcessId = 1;
+    string TraderId = 2;
+    string AccountId = 3;
+    string OrderId = 4;
+}
+
+message CancelPendingOrderGrpcResponse{
+    MtEngineOperationResult Result = 1;
+    optional OrderOrPositionGrpcModel Order = 2;
+}
+
+
+message OrderOrPositionGrpcModel{
+    string Id = 1;
+    string InstrumentId = 2;
+    int32 Leverage = 3;
+    int64 Volume = 4;
+    optional double OpenPrice = 5;
+    optional double ClosePrice = 6;
+    optional double TakeProfitPrice = 7;
+    optional double StopLossPrice = 8;
+    double Pl = 9;
+}
+
+service MtEngine {
+    rpc GetAccounts(GetAccountsGrpcRequest) returns (stream MtAccountGrpcModel);
+    rpc BalanceUpdate(BalanceUpdateGrpcRequest) returns (BalanceUpdateGrpcResponse);
+    rpc OpenPosition(OpenPositionGrpcRequest) returns (OpenPositionGrpcResponse);
+    rpc ClosePosition(ClosePositionGrpcRequest) returns (OpenPositionGrpcResponse);
+    rpc CancelPendingOrder(CancelPendingOrderGrpcRequest) returns (CancelPendingOrderGrpcResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
