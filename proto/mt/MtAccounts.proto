@@ -11,6 +11,7 @@ enum AccountOperationResult{
 
 message GetAccountsGrpcRequest{
     string TraderId = 1;
+    bool CreateDefaultAccounts = 2;
 }
 
 message MtAccountGrpcModel{
@@ -23,8 +24,7 @@ message MtAccountGrpcModel{
 message BalanceUpdateGrpcRequest{
     string ProcessId = 1;
     string TraderId = 2;
-    bool CreateIfNotExists = 3;
-    repeated BalanceUpdateCommand Commands = 4;    
+    repeated BalanceUpdateCommand Commands = 3;    
 }
 
 message BalanceUpdateCommand{
