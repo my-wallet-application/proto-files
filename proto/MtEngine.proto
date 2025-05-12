@@ -94,7 +94,7 @@ message OrderOrPositionGrpcModel{
     string Id = 1;
     string InstrumentId = 2;
     int32 Leverage = 3;
-    int64 Volume = 4;
+    double Volume = 4;
     optional double OpenPrice = 5;
     optional double ClosePrice = 6;
     optional double TakeProfitPrice = 7;
