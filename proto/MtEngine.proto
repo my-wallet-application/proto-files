@@ -53,7 +53,7 @@ message OpenPositionGrpcRequest{
     string AccountId = 3;
     string InstrumentId = 4;
     int32 Leverage = 5;
-    int64 Volume = 6;
+    double Volume = 6;
     optional double DesiredPrice = 7;
     optional double TakeProfitPrice = 8;
     optional double StopLossPrice = 9;
