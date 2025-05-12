@@ -2,12 +2,13 @@ syntax = "proto3";
 package mt_engine;
 import "google/protobuf/empty.proto";
 
-enum MtEngineOperationResult{
+enum MtEngineOperationGrpcResult{
     Success = 0;
     NotEnoughBalance = 1;
     AccountNotFound = 2;
     OrderOrPositionNotFound = 3;
     NoLiquidity = 4;
+    NotEnoughFunds = 5;
 }
 
 message GetAccountsGrpcRequest{
@@ -42,7 +43,7 @@ enum BalanceUpdateReason{
 }
 
 message BalanceUpdateGrpcResponse{
-    repeated MtEngineOperationResult Results = 1;
+    repeated MtEngineOperationGrpcResult Results = 1;
 }
 
 
@@ -59,7 +60,7 @@ message OpenPositionGrpcRequest{
 }
 
 message OpenPositionGrpcResponse{
-    MtEngineOperationResult Result = 1;
+    MtEngineOperationGrpcResult Result = 1;
      optional OrderOrPositionGrpcModel Position = 2;
 }
 
@@ -72,7 +73,7 @@ message ClosePositionGrpcRequest{
 
 
 message ClosePositionGrpcResponse{
-    MtEngineOperationResult Result = 1;
+    MtEngineOperationGrpcResult Result = 1;
     optional OrderOrPositionGrpcModel Position = 2;
 }
 
@@ -84,7 +85,7 @@ message CancelPendingOrderGrpcRequest{
 }
 
 message CancelPendingOrderGrpcResponse{
-    MtEngineOperationResult Result = 1;
+    MtEngineOperationGrpcResult Result = 1;
     optional OrderOrPositionGrpcModel Order = 2;
 }
 
